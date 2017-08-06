@@ -26,6 +26,8 @@ struct node {
 node* start = nullptr;
 node* rear = nullptr;
 
+//queue: inserts at rear, deletes from start
+
 
 
 int main()
