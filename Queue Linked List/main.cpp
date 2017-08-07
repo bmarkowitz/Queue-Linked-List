@@ -18,6 +18,8 @@ void enqueue();
 void dequeue();
 void displayQueue();
 
+void menu();
+
 //node struct
 struct node {
     int data;
@@ -34,10 +36,35 @@ int main()
 {
     cout << "Welcome to the queue.\n";
     
-    createQueue();
-    displayQueue();
-    cout << "The data in the start node is " << start->data << " and the data in the rear node is " << rear->data << ".\n";
+    cout << "To perform queue operations, you must first create a queue." << endl;
     
+    createQueue();
+    
+    menu();
+    
+    int choice;
+    cin >> choice;
+    
+    while(choice != 9)
+    {
+        
+        switch (choice) {
+            case 1:
+                enqueue();
+                break;
+            case 2:
+                dequeue();
+                break;
+            case 3:
+                displayQueue();
+                break;
+                
+            default:
+                break;
+        }
+        menu();
+        cin >> choice;
+    }
     
     return 0;
 }
@@ -113,7 +140,7 @@ void dequeue()
     node* temp;
     if(start == nullptr)
     {
-        cout << "The queue is already empty.\n";
+        cout << "The queue is already empty." << endl << endl;
         return;
     }
     else if(start->next == nullptr)
@@ -121,7 +148,7 @@ void dequeue()
         temp = start;
         start = nullptr;
         delete temp;
-        cout << "The first node in the queue has been deleted.\n";
+        cout << "The first node in the queue has been deleted." << endl << endl;
         return;
     }
     else
@@ -129,7 +156,7 @@ void dequeue()
         temp = start;
         start = start->next;
         delete temp;
-        cout << "The first node in the queue has been deleted.\n";
+        cout << "The first node in the queue has been deleted."  << endl << endl;
     }
 }
 
@@ -139,7 +166,7 @@ void displayQueue()
     temp = start;
     if(start == nullptr)
     {
-        cout << "The queue is empty.\n";
+        cout << "The queue is empty." << endl << endl;
         return;
     }
     else
@@ -150,4 +177,12 @@ void displayQueue()
         temp = temp->next;
     }
     }
+}
+
+void menu()
+{
+    cout << "1: Add an item to the queue" << endl;
+    cout << "2: Delete an item from the queue" << endl;
+    cout << "3: Display the queue" << endl;
+    cout << "9: Exit the program" << endl;
 }
